@@ -1,7 +1,8 @@
 {
     "name": "keann",
     "owner": {
-        "name": "keann"
+        "name": "Alex K.",
+        "email": "code@keann.dev"
     },
     "description": "keann's working rules, hooks and skills for coding agents.",
     "plugins": [
