@@ -1,0 +1,8 @@
+{
+    "name": "agent-kit",
+    "description": "Always-on working rules, a confirmation before git commit and push, and eight skills: code and React conventions, code comments, docs voice, release posts, React Native and tooling pitfalls, and UI verification.",
+    "author": {
+        "name": "keann"
+    },
+    "repository": "https://github.com/keann/agent-kit"
+}

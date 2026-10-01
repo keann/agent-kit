@@ -1,14 +1,14 @@
 {
-    "name": "agent-kit",
+    "name": "keann",
     "owner": {
         "name": "keann"
     },
     "description": "keann's working rules, hooks and skills for coding agents.",
     "plugins": [
         {
-            "name": "keann",
-            "source": "./plugins/keann",
-            "description": "Always-on working rules plus skills for docs, release posts and code conventions."
+            "name": "agent-kit",
+            "source": "./",
+            "description": "Always-on working rules, a confirmation before git commit and push, and eight skills: code and React conventions, code comments, docs voice, release posts, React Native and tooling pitfalls, and UI verification."
         }
     ]
 }

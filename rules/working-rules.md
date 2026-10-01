@@ -29,8 +29,8 @@ These rules hold in every session and every repo. A project's own instructions a
   A spec that was deleted and lives only in git history is a superseded draft.
 - **Unreleased work is one unfinished implementation**: "what is built so far". Version words
   ("v1", "breaking change") are for released packages.
-- **Personal identifiers use the nickname `keann`**: plugin names, namespaces, scopes, prefixes.
-  The user's surname never goes into a name.
+- **The nickname `keann` is the namespace**: an owner, a scope, a marketplace. A thing is named
+  for what it is (`agent-kit`), under that namespace. The user's surname never goes into a name.
 
 ## Quality
 
