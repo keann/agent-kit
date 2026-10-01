@@ -1,5 +1,5 @@
 {
-    "description": "Adds the working rules to the context of every session",
+    "description": "Adds the working rules to every session and asks before git commit or push",
     "hooks": {
         "SessionStart": [
             {
@@ -7,6 +7,17 @@
                     {
                         "type": "command",
                         "command": "cat \"${CLAUDE_PLUGIN_ROOT}/rules/working-rules.md\""
+                    }
+                ]
+            }
+        ],
+        "PreToolUse": [
+            {
+                "matcher": "Bash",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/confirm-git-write.sh\""
                     }
                 ]
             }

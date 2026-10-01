@@ -93,6 +93,22 @@ and make each section say its own thing in plain words ("Everything the package 
   decisions are numbered questions, one sentence of rationale follows the verdict, and each
   paragraph stands without referring back to another.
 
+## Names and cross-links in component docs
+
+- **A component is named as it is written in code**, in bold: **BBCodeText**, never "BBCode
+  Text". Its page title may have spaces; the prose does not.
+- **The first mention of another component links to its page**, as a bold link:
+  `[**BBCodeText**](<link to its docs page>)`. Later mentions in the same section are plain bold.
+- **A component named in its own docs is plain bold**, and so is an exported helper component that
+  has no page.
+- **Code format is for identifiers that are not components**: types, props, values, elements
+  from another library (`View`).
+- **A generic word stays plain**: "the button", "a cell".
+- **An anchor is the slug of the heading's displayed text**, not of the symbol behind it. Check it
+  against the rendered heading ids.
+- **A page about a shared type does not list the components that use it** when the type serves
+  several areas.
+
 ## Depth follows flexibility
 
 How deep a page goes depends on how much the API can do, and not on how many people read it.

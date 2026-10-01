@@ -63,6 +63,10 @@ does not catch most of them, so apply each one that matches the code in front of
   `pnpm add -DE`. A range needs a stated reason.
 - **A published package has a smoke suite that imports the built `dist`** and asserts the public
   surface, wired into `prepublishOnly`. Unit tests run `src` and cannot catch a bundler regression.
+- **Authorship uses `{ "name": "Alex K.", "email": "code@keann.dev" }`.** In the user's own
+  personal package it is the `author` field. In a package that already has a `contributors` field,
+  or in a known public package, it is an entry in `contributors`. A project with its own
+  authorship convention keeps that convention.
 
 ## Lint
 
