@@ -1,0 +1,14 @@
+{
+    "name": "agent-kit",
+    "owner": {
+        "name": "keann"
+    },
+    "description": "keann's working rules, hooks and skills for coding agents.",
+    "plugins": [
+        {
+            "name": "keann",
+            "source": "./plugins/keann",
+            "description": "Always-on working rules plus skills for docs, release posts and code conventions."
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "description": "Adds the working rules to the context of every session",
+    "hooks": {
+        "SessionStart": [
+            {
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "cat \"${CLAUDE_PLUGIN_ROOT}/rules/working-rules.md\""
+                    }
+                ]
+            }
+        ]
+    }
+}
