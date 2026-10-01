@@ -25,7 +25,6 @@ reads as news worth waiting for, and its size reflects the real scale of the rel
 *<package> <version>* is out 🚀
 
 <wordplay line, optional; see Tone>
-
 <preamble, 1–2 sentences>
 
 *⚠️ Breaking*
@@ -39,6 +38,10 @@ reads as news worth waiting for, and its size reflects the real scale of the rel
 
 - These two sections are the whole body. Changed and Fixed entries and install commands stay in
   the changelog.
+- When nothing breaks, leave the Breaking section out and say so in the preamble ("No breaking
+  changes.").
+- The wordplay line, when there is one, sits directly above the preamble with no blank line
+  between them.
 - Formatting is Slack's: `*bold*`, backticks for identifiers, `•` bullets. The footer is linked
   text in Markdown form.
 - A large release takes about 100 words. A 70-word post under-sells it.
@@ -61,18 +64,26 @@ code change.
   API difference.
 - A change that visibly alters output with no code change (a default palette re-synced with the
   design files) is a highlight. Attach it to the matching Breaking bullet.
-- A pure rename that the compiler catches is dropped.
+- A pure rename that the compiler catches is not a highlight next to larger breaking changes, so
+  it is dropped there. When renames are all that breaks, they get one bullet that says where they
+  are and that the compiler flags each one: "A few renames — props on `Toast`, `Toggle`,
+  `ToggleCell`, and the `star` icon. That's the whole list, and the compiler flags each one."
 
-**New components**: one line at concept level, with flavors in parentheses to show scale.
-"Components: preview images (single or 2×2 collage), cells (plain, toggle, action, swipeable),
-selection fields (single and multi)." Concepts replace component names, so nothing is said twice.
+**New bullets**: one bullet per kind of addition, in this order, each one line.
 
-**New tools**: one short line, by name, with no descriptors. It lists hooks and type helpers a
-developer might use in their own components. "Tools for your own components: `useStableCallback`,
-`ExtractUnistylesVariants`."
-
-**Docs and guides**: a plain description in common words, "a guide on custom cells", in place of
-the page's title.
+- **Components**, at concept level, with flavors in parentheses to show scale: "Components:
+  preview images (single or 2×2 collage), cells (plain, toggle, action, swipeable), selection
+  fields (single and multi)." Concepts replace component names, so nothing is said twice. A concept
+  that is not self-explanatory gets a short gloss in parentheses. An addition to an existing
+  component comes last, after "plus", and names that component: "plus a `checkmark` variant for
+  `Toggle`".
+- **Docs**, when the documentation changed in ways a reader will notice: "Storybook: better code
+  snippets where it matters, a toggle for story framing, a Utilities section, and a guide to
+  custom cells." A page is described in common words ("a guide to custom cells"), not by its
+  title.
+- **Tools**, by name, with no descriptors: hooks and type helpers a developer might use in their
+  own components. "Tools for your own components: `useStableCallback`,
+  `ExtractUnistylesVariants`."
 
 **Dropped**: everything most product developers never import. That covers prop-type and interface
 changes, base-props types, `testID` additions, single new tokens, and fixes that only affect a
@@ -85,16 +96,20 @@ preview or docs build.
 - The register is one casual opener ("A big one:"), plain facts, and at most one wink inside a
   bullet ("your screens get a free touch-up"). It is livelier than a changelog and has its own
   wording: phrases from earlier posts are not reused.
-- Most readers are non-native English speakers. Wordplay is one layer on a common international
-  idiom, in as few words as possible. It sits on its own line above the preamble, with the pun
-  word in bold (`*word*`) and one emoji right after it: "Still raising the *bars* 🥁" for a release
-  that improved two bar components.
-- The wink's strength matches the size of the change. A steady improvement gets a steady phrase
-  ("still"). "Again" claims a jump to a new level.
+- No word claims more than the release delivers. "Makeover" for docs that got better in places is
+  too much; "revamped" was accepted.
+- An improvement is described without implying the old state was wrong. "Real code previews" says
+  the previous ones were fake; "better code snippets where it matters" does not.
+- Most readers are non-native English speakers. Use common words: a rare form such as "fuller"
+  reads oddly. Wordplay is one layer on a common international idiom, in as few words as possible,
+  with the pun word in bold (`*word*`) and one emoji right after it: "Still raising the *bars* 🥁"
+  for a release that added two bar components.
+- The wordplay's strength matches the size of the change. A steady improvement gets a steady
+  phrase ("still"). "Again" claims a jump to a new level.
 
-## Reference post
+## Reference posts
 
-Accepted by the user for a large release (105 words):
+Both were accepted by the user. The first is a large release with nothing to pun on:
 
 ```
 *@acme/ui 0.13.0* is out 🚀
@@ -108,6 +123,25 @@ A big one: eight new components, a color-semantics refresh, and a new sizing mod
 *✨ New*
 • Components: preview images (single or 2×2 collage), cells (plain, toggle, action, swipeable), selection fields (single and multi), plus a `checkmark` variant for `Toggle`.
 • Tools for your own components: `useStableCallback`, `ExtractUnistylesVariants`.
+
+📝 [Full changelog](https://github.com/acme/ui/blob/main/CHANGELOG.md)
+```
+
+The second has a wordplay line, renames as the only breaking changes, and a docs bullet:
+
+```
+*@acme/ui 0.14.0* is out 🚀
+
+Still raising the *bars* 🥁
+Four new components, headlined by tab and bottom bars, and revamped Storybook docs.
+
+*⚠️ Breaking*
+• A few renames — props on `Toast`, `Toggle`, `ToggleCell`, and the `star` icon. That's the whole list, and the compiler flags each one.
+
+*✨ New*
+• Components: tab and bottom bars, an inline text button (pressable phrases inside flowing text — BBCode links now render as one), a divider, plus an anchored mode for `NotificationBadge`.
+• Storybook: better code snippets where it matters, a toggle for story framing, a Utilities section, headless `BaseButton` docs, and a guide to custom cells.
+• Tools for your own components: `useToggleState`, `sanitizeUrl`.
 
 📝 [Full changelog](https://github.com/acme/ui/blob/main/CHANGELOG.md)
 ```
