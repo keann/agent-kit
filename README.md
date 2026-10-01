@@ -14,3 +14,8 @@ claude plugin install keann@agent-kit
 - `plugins/keann/rules/working-rules.md` holds the rules that apply in every session. A
   `SessionStart` hook prints the file into the context.
 - `plugins/keann/skills/` holds the skills. Each one is invoked as `keann:<skill>`.
+
+## Credits
+
+The `docs-voice` skill adapts several rules and examples from
+[i-have-adhd](https://github.com/ayghri/i-have-adhd) by Ayoub G. (MIT).
