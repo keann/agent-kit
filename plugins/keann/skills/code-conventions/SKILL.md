@@ -1,6 +1,6 @@
 ---
 name: code-conventions
-description: The user's conventions for TypeScript, React, tests, and npm packages. Use when writing or reviewing TypeScript or JavaScript, adding or moving test files, or creating or editing a package.json.
+description: The user's conventions for TypeScript, tests, and npm packages. Use when writing or reviewing TypeScript or JavaScript, adding or moving test files, or creating or editing a package.json.
 ---
 
 # code-conventions
@@ -8,6 +8,7 @@ description: The user's conventions for TypeScript, React, tests, and npm packag
 These are the user's own conventions. They apply to every file you create or change, tests, stories
 and docs snippets included. A project's own documented convention wins where the two differ. Lint
 does not catch most of them, so apply each one that matches the code in front of you.
+Component structure, props, styling and stories are in the `react-conventions` skill.
 
 ## TypeScript
 
@@ -28,13 +29,6 @@ does not catch most of them, so apply each one that matches the code in front of
 - **With type-fest installed, use its strict utilities**: `Except` over `Omit`, `ExcludeStrict`
   over `Exclude`, `ExtractStrict` over `Extract`. A typo in a key or a member then fails to
   compile. Read its `index.d.ts` before concluding that it lacks a utility.
-
-## React
-
-- **A dependency array lists what changes between renders**: props, state, unstable callbacks.
-  Refs and other objects with a stable identity (a Reanimated shared value, a stable callback) are
-  left out, even when the hook body reads or writes them. Where the repo's lint enforces
-  exhaustive deps, tell the user about the conflict.
 
 ## Public API
 
