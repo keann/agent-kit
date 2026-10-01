@@ -6,8 +6,9 @@ description: Known pitfalls in Storybook, vitest, Vite, bun, pnpm, oxfmt and ESL
 # tooling-pitfalls
 
 Each entry was verified in the tool's source or by experiment. Find the symptom below, then read
-that entry in the named file. Every file states the versions its entries were verified on. When
-the installed version is newer, check the mechanism again before relying on the entry.
+that entry in the named file. Most entries state the versions they were verified on. When the
+installed version is newer than the stated one, check the mechanism again before relying on the
+entry.
 
 When a tool misbehaves, the fix belongs in that tool's own config. Check its options (a glob, an
 exclude, an alias) before writing an adapter around it.

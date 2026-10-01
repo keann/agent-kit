@@ -21,7 +21,8 @@ target and compare with the default walk, which is what CI runs.
 
 In write mode oxfmt joins the indented sub-bullets of a nested list into long lines. Where
 Markdown is wrapped by hand and only `--check` runs in CI, never run write mode on `.md` files.
-To recover, restore the file from git and re-apply the edit by hand.
+To recover, copy the reflowed file to the scratchpad, write the committed version back with
+`git show HEAD:./<file> > <file>`, and re-apply your edits by hand from the copy.
 
 ## oxfmt and ESLint disagree on a type-parameter comma
 

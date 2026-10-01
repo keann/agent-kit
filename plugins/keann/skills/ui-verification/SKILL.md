@@ -18,10 +18,13 @@ and which cannot.
    rendering: `document.visibilityState` on web, a known-good animation (a spinner) on either.
 4. **Make the reproduction faithful.** A replica that differs from the real case in one detail can
    reverse the verdict. Reproduce with the real entry point, the real file type, the real build.
-5. **Probes are temporary.** Add the probe, measure, then restore the file from git and confirm it
-   is byte-identical. Scripts and captures live in the scratchpad, never in the repo.
-6. **Compare before and after.** Run the same measurement on the old code and the new code
-   (`git stash push -- <file>`, run, `git stash pop`). A green run on new code alone proves little.
+5. **Probes are temporary.** Copy the file to the scratchpad before adding the probe. After the
+   measurement, copy it back and confirm with `cmp` that it is byte-identical. Scripts and captures
+   live in the scratchpad, never in the repo.
+6. **Compare before and after.** Run the same measurement on the old code and the new code: copy
+   the new file to the scratchpad, write the old one with `git show HEAD:./<file> > <file>` (the
+   `./` makes the path relative to the current folder), run, and copy the new file back. A green
+   run on new code alone proves little.
 7. **Say what was verified where.** Report each claim with its environment: headless web,
    simulator, device. State plainly what was not verified.
 

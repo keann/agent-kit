@@ -107,7 +107,8 @@ that state, so it starts after the commit. The cost is about two frames of laten
 ## Layout animations on Android
 
 `entering`, `exiting` and `LayoutTransition` were seen broken on new-architecture Android in
-production apps.
+production apps. The failure is not pinned to a version or a mechanism. Check the installed version
+on an Android device before ruling these APIs out.
 
 **Fix:** drive enter and exit with explicit shared values: duration-based springs with clamped
 overshoot, seeded with the gesture's velocity.

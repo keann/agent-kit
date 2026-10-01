@@ -24,6 +24,8 @@ reads as news worth waiting for, and its size reflects the real scale of the rel
 ```
 *<package> <version>* is out 🚀
 
+<wordplay line, optional; see Tone>
+
 <preamble, 1–2 sentences>
 
 *⚠️ Breaking*

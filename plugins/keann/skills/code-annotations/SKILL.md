@@ -18,7 +18,8 @@ Arguments: $ARGUMENTS
 
 The arguments name the files to audit and may add notes from the caller: `review` for findings
 without edits, a different scope, or which blocks the user wrote. With no files named, take the
-TypeScript and JavaScript files that `git diff HEAD --name-only` lists.
+TypeScript and JavaScript files that `git diff HEAD --name-only` lists, plus the untracked ones
+from `git ls-files --others --exclude-standard`.
 
 Edit only the comment blocks the working tree changes, per `git diff HEAD -- <file>`; an untracked
 file counts as changed whole. You run as a subagent and never saw the conversation behind the

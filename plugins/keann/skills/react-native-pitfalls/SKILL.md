@@ -6,9 +6,10 @@ description: Known pitfalls in React Native, Reanimated, Gesture Handler, Yoga l
 # react-native-pitfalls
 
 Each entry was found the hard way and verified in the library's source or on a device. Find the
-symptom below, then read that entry in the named file before writing or changing the code. Every
-entry states the versions it was verified on. When the installed version is newer, check the
-mechanism in `node_modules` before relying on the entry.
+symptom below, then read that entry in the named file before writing or changing the code. Each
+file states the versions its entries were verified on, and an entry names its own where it
+differs. When the installed version is newer than the stated one, check the mechanism in
+`node_modules` before relying on the entry.
 
 ## [reanimated.md](reanimated.md)
 
