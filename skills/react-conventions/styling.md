@@ -7,7 +7,8 @@ The examples use React Native with Unistyles. The rules apply to any variant-bas
 - `MyComponent.styles.ts` holds the stylesheet as its default export.
 - **Tokens only.** No hardcoded colours, spacing, or font values.
 - **Style keys follow the render tree**: the root first, then its children. Not alphabetical.
-- **No `alignSelf` default on a component.** The parent controls layout.
+- **Avoid an `alignSelf` default on a component.** The parent controls layout. Set one only when
+  every alternative is worse, and explain why in a comment next to it.
 - **The file holds only values a designer could change.** A value derived from them (a built
   spring config) lives where it is used.
 - Motion and gesture numbers sit in `constants/motion.ts` as one flat object of plain numbers.

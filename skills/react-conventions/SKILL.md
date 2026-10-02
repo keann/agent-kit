@@ -34,9 +34,13 @@ the `code-conventions` skill.
 - A file in `helpers/` or `constants/` drops the component prefix (`helpers/requestKey.ts`,
   `constants/motion.ts`). The exported symbol keeps a descriptive name (`sourceRequestKey`,
   `SHEET_MOTION`).
-- A subpart is one flat file in `components/` (`components/SheetHeader.tsx`) with its props type
-  declared in the same file. It has no folder of its own, no `*.types.ts`, and no barrel. Its
-  helpers and constants live in the root component's folders.
+- Subparts live in `components/`, all in one of two shapes. While no subpart needs a styles or
+  types file of its own, each subpart is one flat file (`components/SheetHeader.tsx`) that
+  declares its props type. Once one does, every subpart gets a kebab-case folder named without the
+  root component's prefix (`components/surface/BaseSheetSurface.tsx`). The folder holds
+  `<Subpart>.styles.ts` when the subpart has styles, and `<Subpart>.types.ts` when it has public
+  props. A subpart has no barrel in either shape, and its helpers and constants live in the root
+  component's folders.
 - `index.ts` exports types first, then the component. It re-exports a subpart's public type from
   the subpart's file path.
 - The package root re-exports each component flat. There are no barrels for category folders.
