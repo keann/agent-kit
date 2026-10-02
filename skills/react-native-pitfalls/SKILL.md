@@ -36,6 +36,7 @@ differs. When the installed version is newer than the stated one, check the mech
 ## [yoga-layout.md](yoga-layout.md)
 
 - `flexBasis` gives 0 px on native and the right size on web.
+- A `flex: 1` or `flexBasis` child keeps the size of its first layout.
 - A measuring view reports a height capped at its parent's.
 - An auto-height child overflows instead of fitting the space left.
 - Text inside a zero-size anchor box collapses to "…".

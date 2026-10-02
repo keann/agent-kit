@@ -11,6 +11,23 @@ any stack sized by its content. A spacer styled `flexBasis: 12, flexGrow: 0, fle
 
 **Fix:** also set `minHeight` and `minWidth` to the size. Yoga respects minimums.
 
+## A `flex: 1` or `flexBasis` child keeps the size of its first layout
+
+Yoga computes a child's definite flex basis once and caches it. A definite basis is a number, a
+percentage, or the 0 that `flex: 1` sets on native. Yoga clears that cache only in
+`markDirtyAndPropagate` and when it hides a subtree. React Native marks a changed node with
+`setDirty`, which keeps the cache. A child first laid out while its parent has no height therefore
+keeps the content-sized basis of that pass. Two `flex: 1` lists with 10 and 60 rows split 111 and
+667 px instead of 389 and 389 once the parent gets a height. A later change to `flexBasis` never
+applies. A percentage basis also ignores a parent resized through its style props, so 25% of a
+parent whose `height` drops from 600 to 300 px stays 150 px. `height` and `width` are resolved on
+every layout, percentages included.
+
+**Fix:** to clear a basis taken while the parent had no height, render the parent with
+`display: 'none'` for one commit before it gets its height. Yoga zeroes the layout of a hidden
+subtree, the cached basis included. Fabric emits no layout events for the hidden children. For a
+size that changes at runtime, set `height` or `width` instead of `flexBasis`.
+
 ## A measuring view reports a height capped at its parent's
 
 A child in normal flow with auto height, inside a parent with a definite height, is measured "at
