@@ -75,4 +75,8 @@ These rules hold in every session and every repo. A project's own instructions a
   command did not run. Check paths one at a time (`test -f`).
 - A `Bin` line for a text file in `git diff --stat` means the Write tool left a control byte (NUL
   or a non-breaking space). Replace it at byte level, and write such characters as escapes
-  (` `).
+  (`\u00a0`).
+- `git log --format='%s%n%b'` prints the body right under the subject: `%b` drops the blank line
+  between them. A message modelled on it has no blank line either, so git reads its first
+  paragraph as part of the subject. Read examples with `--format=%B`, and commit with one `-m` per
+  paragraph: git puts the blank lines in.
