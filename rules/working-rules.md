@@ -23,6 +23,9 @@ These rules hold in every session and every repo. A project's own instructions a
   the user pick.
 - **A recorded convention governs the code you create.** Names, files, and prose the user wrote or
   edited are settled. A doubt about them goes into the report.
+- **A name the user asks for is checked against its neighbours** before you build it. When it
+  breaks their pattern (`minLabelWidth` beside `iconColor`), say so and propose the matching name
+  (`labelMinWidth`).
 - **A named review target is the boundary.** Ranked findings stay inside it. A dangerous discovery
   outside it becomes a task chip or one unranked aside.
 - **Review against the working tree and its shipped docs** (README, `docs/`, CHANGELOG, JSDoc).
