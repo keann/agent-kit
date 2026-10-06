@@ -97,12 +97,13 @@ and make each section say its own thing in plain words ("Everything the package 
 
 - **A component is named as it is written in code**, in bold: **BBCodeText**, never "BBCode
   Text". Its page title may have spaces; the prose does not.
-- **The first mention of another component links to its page**, as a bold link:
-  `[**BBCodeText**](<link to its docs page>)`. Later mentions in the same section are plain bold.
+- **The first mention of anything with its own docs page or entry links to it, as a bold link**,
+  whether it is a component, a helper, a hook, or a guide: `[**BBCodeText**](<link to its page>)`,
+  `[**isTextColor**](<link to its entry>)`. Later mentions in the same section are plain bold.
 - **A component named in its own docs is plain bold**, and so is an exported helper component that
   has no page.
-- **Code format is for identifiers that are not components**: types, props, values, elements
-  from another library (`View`).
+- **Code format is for every other identifier**: types, props, values, elements from another
+  library (`View`).
 - **A generic word stays plain**: "the button", "a cell".
 - **An anchor is the slug of the heading's displayed text**, not of the symbol behind it. Check it
   against the rendered heading ids.
