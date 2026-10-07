@@ -22,7 +22,7 @@ reads as news worth waiting for, and its size reflects the real scale of the rel
 ## Shape
 
 ```
-*<package> <version>* is out 🚀
+*<package> <version>* <arrival phrase> <emoji>
 
 <wordplay line, optional; see Tone>
 <preamble, 1–2 sentences>
@@ -33,11 +33,14 @@ reads as news worth waiting for, and its size reflects the real scale of the rel
 *✨ New*
 • <bullet>
 
-📝 [Full changelog](<URL of CHANGELOG.md on the default branch>)
+📝 [Full changelog](<URL of CHANGELOG.md on the default branch>) · 🛠️ [Migration guide](<URL of the release's MIGRATION.md section>)
 ```
 
 - These two sections are the whole body. Changed and Fixed entries and install commands stay in
   the changelog.
+- The 🛠️ link appears when the package's `MIGRATION.md` has a section for this release, even one
+  with no Breaking section. It points to that section's anchor (`MIGRATION.md#from-015x-to-0160`),
+  so a reader lands on this release's steps.
 - When nothing breaks, leave the Breaking section out and say so in the preamble ("No breaking
   changes.").
 - The wordplay line, when there is one, sits directly above the preamble with no blank line
@@ -47,6 +50,12 @@ reads as news worth waiting for, and its size reflects the real scale of the rel
 - A large release takes about 100 words. A 70-word post under-sells it.
 
 ## What each part says
+
+**Headline**: the bold package and version first, then a short arrival phrase and one emoji at the
+end ("is out 🚀", "has landed 📦"). Slack notifications and previews show the first words, so the
+package name leads them. A leading emoji would read as one more section label, like `⚠️ Breaking`.
+Each post words the phrase and picks the emoji afresh. The emoji is one that no other line of the
+post uses. The headline stays plain, and the wordplay line below it carries any joke.
 
 **Preamble**: the scale and the theme of the release in plain, countable facts. "A big one: eight
 new components, a color-semantics refresh, and a new sizing model for text and buttons. Most of
