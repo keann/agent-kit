@@ -1,6 +1,6 @@
 # vitest pitfalls
 
-Verified on vitest 4.1.
+Verified on vitest 4.1. Lines marked (5.0) were re-verified on vitest 5.0.3.
 
 ## Benchmarks measure the transform, not the package
 
@@ -19,10 +19,26 @@ that factor: one measured 1.6× where the built artifacts differ by 6–7×.
   measured bundle with a `server.deps.external` regex. An alias to a bundle changes nothing while
   the module stays inlined.
 - Check the bench against plain `node` on the same bundle. The two should agree within about 10 %.
-- Put one scenario in each suite. vitest's summary otherwise ranks unrelated inputs against each
-  other ("N× faster").
-- To drop the summary block, extend `BenchmarkReporter` from `vitest/node` (`vitest/reporters` is
-  deprecated since 4.1).
+- (4.x) Put one scenario in each suite. vitest's summary otherwise ranks unrelated inputs against
+  each other ("N× faster"). To drop the summary block, extend `BenchmarkReporter` from
+  `vitest/node`.
+- (5.0) `bench` is a test-context fixture: `test(name, async ({ bench }) => …)`. A lone
+  `bench(name, fn).run()` prints one row and ranks nothing; `bench.compare(a, b)` prints one table
+  with `fastest` / `slowest` labels and no multiplier. `benchmark.reporters` and `BenchmarkReporter`
+  are gone. For a ratio, divide `result.get(name).hz` values inside the test.
+- (5.0) `vitest bench --project perf` matches nothing: bench mode runs a generated variant named
+  `perf (bench)`. Filter with `--project 'perf*'`.
+- (5.0) The warning "accessed module export getters too many times" names a module the measured
+  code reaches through Vite's transform, such as a workspace package whose `exports` points at
+  `src`. It is the overhead above, now reported; externalize it or accept the inflation.
+
+## Bench tables and passing-file lines are missing from an agent's shell
+
+(5.0) When `std-env` sees `CLAUDECODE`, `CLAUDE_CODE` or `AI_AGENT`, vitest 5 defaults to its
+`agent` reporter, which prints failures and the run summary only. The person's terminal and CI
+are unaffected.
+
+**Fix:** pass `--reporter=default` explicitly.
 
 ## `execArgv` in the pool options has no effect
 

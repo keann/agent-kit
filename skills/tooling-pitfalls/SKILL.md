@@ -39,6 +39,7 @@ exclude, an alias) before writing an adapter around it.
 - A pure-helper test fails to import because of an animation library.
 - A `vite` alias is ignored for a dependency.
 - Failure lines are missing from captured output.
+- Bench tables and passing-file lines are missing from an agent's shell.
 
 ## [bundlers.md](bundlers.md)
 
