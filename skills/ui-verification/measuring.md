@@ -55,14 +55,16 @@ and the remaining suite must fail too. Keep the old test beside the new one unde
 name while comparing, restore the implementation from its original text, and delete the copy
 afterwards. A suite that passes after a rewrite says nothing about what it still pins.
 
-## Showing visual options to the user
+## Pictures for the user
 
-A choice of colour, motion, framing or icon is made from a picture.
+A choice of colour, motion, framing or icon is made from a picture, and a change is shown with
+one. Every picture is a headless Playwright capture at `deviceScaleFactor: 2`, clipped to the
+element: `locator.screenshot()`, or `page.screenshot({ clip })` for a region spanning several.
 
 - Render each option in the scratchpad: headless Playwright for web content and animation
   frames, the platform's own tools for app icons, ffmpeg for video.
 - Put the options side by side in one image or video (ffmpeg `hstack`, or an HTML grid that is
   screenshotted), with each option's name written in the image.
-- For page styling, apply each variant with `page.addStyleTag` at `deviceScaleFactor: 2` and clip
-  to the element.
+- Apply a styling variant with `page.addStyleTag`, and a text or markup variant with
+  `page.evaluate`, before the capture.
 - Send the file, then ask.

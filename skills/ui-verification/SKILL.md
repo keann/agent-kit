@@ -38,7 +38,8 @@ and which cannot.
 | Real native gestures and layout | The iOS simulator with `idb`. See [ios-simulator.md](ios-simulator.md) |
 | Logs from a native app | Metro's console, or a scratch log server. See [ios-simulator.md](ios-simulator.md) |
 | Render cost, frame rate, bundle size | See [measuring.md](measuring.md) |
-| A colour, motion or icon choice for the user | Rendered options side by side. See [measuring.md](measuring.md) |
+| A colour, motion or icon choice for the user | Rendered options side by side, captured with headless Playwright at 2×. See [measuring.md](measuring.md) |
+| A picture showing the user a change | Headless Playwright at 2×, clipped to the element. See [measuring.md](measuring.md) |
 
 ## The in-app browser pane
 
@@ -53,6 +54,8 @@ queries, and switch to headless Playwright for anything about motion or gestures
 - **Screenshots lag the DOM.** A screenshot taken one second after a click can show the old
   state. Trust a DOM query. When a picture is needed, wait two seconds.
 - **A drag is a single move.** It never activates a pan gesture, which needs several moves.
-- **Zooming into a region is not supported.** It returns the full screenshot.
+- **Screenshots are scaled down to the pane.** A page 1,100 px wide lands at about 800 px, and
+  zooming into a region only crops that copy, so small text blurs. Take every picture meant for
+  the user with headless Playwright instead (see [measuring.md](measuring.md)).
 - **A synthetic `element.click()`** carries no pointer events. Code that compares a click with
   its `pointerdown` position may ignore it.
