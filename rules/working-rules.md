@@ -48,6 +48,11 @@ These rules hold in every session and every repo. A project's own instructions a
   a mechanism, build the cheapest reading of their exact words and say which reading it is.
 - **Check claims about earlier work in the tree.** A memory or a summary saying "fixed" is a
   pointer, and the code is the proof.
+- **A claim is as wide as its check.** "No", "every", "all", and "the cause" need an exhaustive
+  check: a search for the bare name with every hit read in full (props, defaults, explicit type
+  arguments), and types compiled at the real call sites, not at stand-ins. A narrower check gets a
+  scoped claim that names its sample ("in these 4 call sites"). Commit messages, changelog
+  entries, and doc comments follow the same rule.
 
 ## Running things
 
