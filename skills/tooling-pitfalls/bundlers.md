@@ -2,17 +2,26 @@
 
 ## bun build drops a module behind a re-export barrel
 
-Seen on bun 1.3.10 and 1.3.14 (upstream oven-sh/bun#27709). When `package.json` declares
+Seen on bun 1.3.10, 1.3.14 and 1.4.0 (upstream oven-sh/bun#27709). When `package.json` declares
 `sideEffects: false`, `bun build` removes a module whose only use is a pure re-export from a
-barrel. The bundle then references an undefined binding and throws
-"ReferenceError: X is not defined" at load. The export style does not matter: every form of
-re-export through the barrel fails, and `--ignore-dce-annotations` does not help.
+barrel. The bundle keeps the export and loses the binding. Node rejects such a file before running
+it, with "SyntaxError: Export 'X' is not defined in module". Code that reads the missing binding
+throws "ReferenceError: X is not defined". The export style does not matter. Every form of
+re-export through the barrel fails, including `import { x }` followed by `export { x }`. No bundler
+option helps either: splitting and minification on or off, `--ignore-dce-annotations`, and a build
+of the entry alone all drop the module.
 
 **Fix:** import each module directly where it is used, and define the entry's public functions in
-the entry file instead of re-exporting them.
+the entry file instead of re-exporting them. A value the entry itself uses survives:
+`export default x` after `import { x } from './a'` keeps the module.
+
+**Detect:** `node --check <file>` on each built `.js` file fails with the SyntaxError above. It
+parses the file and runs none of it.
 
 **Guard:** unit tests run `src` and can never catch a bundler regression. A smoke suite that
-imports the built `dist` and asserts the public surface, run in `prepublishOnly`, does.
+imports the built `dist`, run in `prepublishOnly`, catches one when it checks each export's value:
+its `typeof`, or a call. Comparing the names alone passes. Vitest 5 loads the broken bundle with
+every export `undefined` instead of rejecting it.
 
 ## A bun script stopped reading `.env`
 

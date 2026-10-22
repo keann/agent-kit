@@ -1,6 +1,6 @@
 ---
 name: tooling-pitfalls
-description: Known pitfalls in Storybook, vitest, Vite, bun, pnpm, oxfmt and ESLint, each with its mechanism and fix. Use when configuring or debugging one of these tools, when a build, a test run or a Storybook page behaves unexpectedly, and when writing a benchmark.
+description: Known pitfalls in Storybook, vitest, Vite, bun, pnpm, oxfmt and ESLint, each with its mechanism and fix. Use when configuring or debugging one of these tools, when a build or its output, a test run or a Storybook page behaves unexpectedly, and when writing a benchmark.
 ---
 
 # tooling-pitfalls
@@ -43,7 +43,7 @@ exclude, an alias) before writing an adapter around it.
 
 ## [bundlers.md](bundlers.md)
 
-- A bun-built bundle throws "X is not defined" at load.
+- A bun-built file fails to load: "Export 'X' is not defined in module" or "X is not defined".
 - A bun script stopped reading `.env`.
 - "Element type is invalid … got: object" for a default import under Vite 8.
 - A file fails to parse because of a glob in a comment.
