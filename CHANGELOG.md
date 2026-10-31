@@ -3,6 +3,14 @@
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Version numbers
 follow the rules in [Versioning](README.md#versioning).
 
+## [1.0.1] - 2026-10-31
+
+### Fixed
+
+- `release-post` marks the "is out 🚀" headline of its reference posts as not a template, in line
+  with its rule that each post words its own headline.
+- `release-post` and `ui-verification` state two remarks as present facts instead of past events.
+
 ## [1.0.0] - 2026-10-31
 
 ### Added

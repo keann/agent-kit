@@ -106,7 +106,7 @@ preview or docs build.
   bullet ("your screens get a free touch-up"). It is livelier than a changelog and has its own
   wording: phrases from earlier posts are not reused.
 - No word claims more than the release delivers. "Makeover" for docs that got better in places is
-  too much; "revamped" was accepted.
+  too much; "revamped" fits.
 - An improvement is described without implying the old state was wrong. "Real code previews" says
   the previous ones were fake; "better code snippets where it matters" does not.
 - Most readers are non-native English speakers. Use common words: a rare form such as "fuller"
@@ -118,7 +118,8 @@ preview or docs build.
 
 ## Reference posts
 
-Both were accepted by the user. The first is a large release with nothing to pun on:
+Both were accepted by the user. They share the headline phrase "is out 🚀", which is not a
+template: each post words its own. The first is a large release with nothing to pun on:
 
 ```
 *@acme/ui 0.13.0* is out 🚀

@@ -54,7 +54,7 @@ Pick the first channel that works:
    millisecond offsets and does not depend on Metro.
 3. **The system log.**
    `xcrun simctl spawn <udid> log stream --level debug --predicate 'process == "<app>"'` shows
-   React Native's `console.log` lines. It has stopped delivering without a reason before.
+   React Native's `console.log` lines. It can go silent with no error.
 4. **`console.error`.** It raises a LogBox toast whose text `describe-all` can read.
 5. **The Hermes debugger.** `GET http://localhost:8081/json/list` returns the target. Connect a
    WebSocket with the header `Origin: http://127.0.0.1:8081`; Expo rejects a missing origin and
