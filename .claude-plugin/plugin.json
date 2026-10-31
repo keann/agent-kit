@@ -1,5 +1,6 @@
 {
     "name": "agent-kit",
+    "version": "1.0.0",
     "description": "Always-on working rules, a confirmation before git commit and push, and nine skills: code and React conventions, code comments, docs voice, release posts, findings reports, React Native and tooling pitfalls, and UI verification.",
     "author": {
         "name": "Alex K.",

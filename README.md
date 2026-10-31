@@ -3,6 +3,9 @@
 Working rules, hooks and skills for coding agents, packaged as one Claude Code plugin. The plugin
 is named `agent-kit`, and its marketplace is named `keann`. The repository root is the plugin.
 
+These are my own working rules and conventions. Once installed, the working rules apply to every
+Claude Code session in every project. Fork the repository to make the kit your own.
+
 ## Install
 
 ```bash
@@ -10,15 +13,16 @@ claude plugin marketplace add keann/agent-kit
 claude plugin install agent-kit@keann
 ```
 
-The plugin has no `version` field, so every commit counts as a new version. To pick up new
-commits:
+An installed copy changes only when the version in `plugin.json` changes. To pick up a new
+version:
 
 ```bash
 claude plugin marketplace update keann
 claude plugin update agent-kit@keann
 ```
 
-A session started after the update uses the new version.
+A session started after the update uses the new version. [CHANGELOG.md](CHANGELOG.md) lists what
+each version changed.
 
 ## Always on
 
@@ -34,33 +38,37 @@ Two hooks run in every session, with no skill to invoke.
 Each skill loads on its own when its description matches the task, and can be invoked by name as
 `/agent-kit:<skill>`.
 
-| Skill | Use it for |
+| Area | Skill | Use it for |
+|---|---|---|
+| Code | [code-conventions](skills/code-conventions/SKILL.md) | TypeScript naming and equality, imports, where tests go, `package.json` norms |
+| Code | [react-conventions](skills/react-conventions/SKILL.md) | Component folder structure, props and types, component bodies, styling, Storybook stories |
+| Code | [code-annotations](skills/code-annotations/SKILL.md) | Auditing and rewriting code comments and doc blocks; runs a checker script in a forked subagent |
+| Writing | [docs-voice](skills/docs-voice/SKILL.md) | Prose in a README, changelog, guide, docs page or RFC |
+| Writing | [release-post](skills/release-post/SKILL.md) | A short Slack release post written from a changelog |
+| Writing | [findings-report](skills/findings-report/SKILL.md) | The ranked list of findings a review or investigation reports, item by item |
+| Pitfalls | [react-native-pitfalls](skills/react-native-pitfalls/SKILL.md) | Known traps in React Native, Reanimated, Gesture Handler, Yoga, react-native-web and Unistyles |
+| Pitfalls | [tooling-pitfalls](skills/tooling-pitfalls/SKILL.md) | Known traps in Storybook, vitest, Vite, bun, pnpm, oxfmt and ESLint |
+| Verification | [ui-verification](skills/ui-verification/SKILL.md) | Proving UI behaviour on web and on an iOS simulator, and measuring render cost |
+
+## Versioning
+
+The version lives only in `.claude-plugin/plugin.json`, and installed copies update when it
+changes. A commit that changes a shipped file (`rules/`, `hooks/`, `skills/`, or the manifests)
+bumps the version in that same commit. The same commit adds a `## [x.y.z] - <date>` section to
+[CHANGELOG.md](CHANGELOG.md). A commit that touches only the README or the changelog keeps the
+version.
+
+| Bump | When |
 |---|---|
-| [code-conventions](skills/code-conventions/SKILL.md) | TypeScript naming and equality, imports, where tests go, `package.json` norms |
-| [react-conventions](skills/react-conventions/SKILL.md) | Component folder structure, props and types, component bodies, styling, Storybook stories |
-| [code-annotations](skills/code-annotations/SKILL.md) | Auditing and rewriting code comments and doc blocks; runs a checker script in a forked subagent |
-| [docs-voice](skills/docs-voice/SKILL.md) | Prose in a README, changelog, guide, docs page or RFC |
-| [release-post](skills/release-post/SKILL.md) | A short Slack release post written from a changelog |
-| [findings-report](skills/findings-report/SKILL.md) | The ranked list of findings a review or investigation reports, item by item |
-| [react-native-pitfalls](skills/react-native-pitfalls/SKILL.md) | Known traps in React Native, Reanimated, Gesture Handler, Yoga, react-native-web and Unistyles |
-| [tooling-pitfalls](skills/tooling-pitfalls/SKILL.md) | Known traps in Storybook, vitest, Vite, bun, pnpm, oxfmt and ESLint |
-| [ui-verification](skills/ui-verification/SKILL.md) | Proving UI behaviour on web and on an iOS simulator, and measuring render cost |
-
-Four skills keep their detail in reference files beside `SKILL.md`, which are read only when the
-task needs them: `react-conventions`, the two pitfalls skills, and `ui-verification`.
-
-## Layout
-
-```
-.claude-plugin/
-├── marketplace.json        # the marketplace, named keann
-└── plugin.json             # the plugin, named agent-kit
-hooks/                      # hooks.json and the commit guard script
-rules/                      # the always-on working rules
-skills/<skill>/SKILL.md     # one folder per skill
-```
+| Major | A skill is removed or renamed, or a rule is reversed |
+| Minor | A new skill, rule, hook, or reference file |
+| Patch | Wording, fixes, or a new pitfall entry in an existing file |
 
 ## Credits
 
 The `docs-voice` skill adapts several rules and examples from
 [i-have-adhd](https://github.com/ayghri/i-have-adhd) by Ayoub G. (MIT).
+
+## License
+
+MIT, see [LICENSE](LICENSE).
