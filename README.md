@@ -31,7 +31,11 @@ Two hooks run in every session, with no skill to invoke.
 | Hook | Event | What it does |
 |---|---|---|
 | Working rules | `SessionStart` | Prints [working-rules.md](rules/working-rules.md) into the context: consent, scope, quality, running things, talking to the user, tool traps. |
-| Commit guard | `PreToolUse` on Bash | Runs [confirm-git-write.sh](hooks/confirm-git-write.sh). A command that runs `git commit` or `git push` gets a confirmation prompt. Every other command passes untouched. |
+| Commit guard | `PreToolUse` on Bash | Runs [confirm-git-write.sh](hooks/confirm-git-write.sh). A command that runs `git commit` or `git push` gets a confirmation prompt. Every other command passes untouched. The `commit_guard` option turns it off. |
+
+To turn the commit guard off, set the plugin's `commit_guard` option to false in `/config`, or
+install with `--config commit_guard=false`. Restart Claude Code after changing it in `/config`.
+The working rules still tell the agent to commit and push only when you say so.
 
 ## Skills
 

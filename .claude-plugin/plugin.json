@@ -6,5 +6,13 @@
         "name": "Alex K.",
         "email": "code@keann.dev"
     },
-    "repository": "https://github.com/keann/agent-kit"
+    "repository": "https://github.com/keann/agent-kit",
+    "userConfig": {
+        "commit_guard": {
+            "type": "boolean",
+            "title": "Commit guard",
+            "description": "Ask for confirmation before the agent runs git commit or git push",
+            "default": true
+        }
+    }
 }

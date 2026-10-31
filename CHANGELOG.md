@@ -10,6 +10,7 @@ follow the rules in [Versioning](README.md#versioning).
 - Working rules, printed into every session by a `SessionStart` hook: consent, scope, quality,
   running things, talking to the user, and tool traps.
 - Commit guard, a `PreToolUse` hook that asks for confirmation before `git commit` and `git push`.
+- `commit_guard` plugin option, which turns the commit guard off when set to false.
 - `code-conventions` — TypeScript naming and equality, imports, test placement, and
   `package.json` norms.
 - `react-conventions` — component folder structure, props and types, component bodies, styling,
