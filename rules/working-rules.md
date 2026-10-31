@@ -16,8 +16,8 @@ These rules hold in every session and every repo. A project's own instructions a
 
 ## Scope
 
-- **"Examine and fix" requests get findings first**: an ordered list with a title, type, severity,
-  evidence, and suggested fix per item. Write non-trivial code after the user picks.
+- **"Examine and fix" requests get findings first**, in the format of the `findings-report` skill.
+  Write non-trivial code after the user picks.
 - **A broken thing gets an impact check before a fix**: find what loads the artifact, export, or
   API (its README, docs, dependents, and imports). When nothing does, report it as a finding.
 - **These are proposals, never applied fixes**: file renames and moves, barrel or export shape,

@@ -41,6 +41,7 @@ Each skill loads on its own when its description matches the task, and can be in
 | [code-annotations](skills/code-annotations/SKILL.md) | Auditing and rewriting code comments and doc blocks; runs a checker script in a forked subagent |
 | [docs-voice](skills/docs-voice/SKILL.md) | Prose in a README, changelog, guide, docs page or RFC |
 | [release-post](skills/release-post/SKILL.md) | A short Slack release post written from a changelog |
+| [findings-report](skills/findings-report/SKILL.md) | The ranked list of findings a review or investigation reports, item by item |
 | [react-native-pitfalls](skills/react-native-pitfalls/SKILL.md) | Known traps in React Native, Reanimated, Gesture Handler, Yoga, react-native-web and Unistyles |
 | [tooling-pitfalls](skills/tooling-pitfalls/SKILL.md) | Known traps in Storybook, vitest, Vite, bun, pnpm, oxfmt and ESLint |
 | [ui-verification](skills/ui-verification/SKILL.md) | Proving UI behaviour on web and on an iOS simulator, and measuring render cost |
