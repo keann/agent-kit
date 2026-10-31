@@ -1,9 +1,18 @@
 {
     "name": "agent-kit",
-    "description": "Always-on working rules, a confirmation before git commit and push, and eight skills: code and React conventions, code comments, docs voice, release posts, React Native and tooling pitfalls, and UI verification.",
+    "version": "1.0.0",
+    "description": "Always-on working rules, a confirmation before git commit and push, and nine skills: code and React conventions, code comments, docs voice, release posts, findings reports, React Native and tooling pitfalls, and UI verification.",
     "author": {
         "name": "Alex K.",
         "email": "code@keann.dev"
     },
-    "repository": "https://github.com/keann/agent-kit"
+    "repository": "https://github.com/keann/agent-kit",
+    "userConfig": {
+        "commit_guard": {
+            "type": "boolean",
+            "title": "Commit guard",
+            "description": "Ask for confirmation before the agent runs git commit or git push",
+            "default": true
+        }
+    }
 }
