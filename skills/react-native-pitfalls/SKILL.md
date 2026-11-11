@@ -63,6 +63,7 @@ differs. When the installed version is newer than the stated one, check the mech
 - A style stops following theme changes.
 - Indexing a variant axis fails to type-check; a compound variant applies when it should not.
 - Content inside a `ScopedTheme` keeps the wrong theme.
+- Variants are not applied under the Metro integration.
 - "No theme has been selected yet" at import.
 - A pressed state through `_web` pseudo-classes does not reach the DOM.
 

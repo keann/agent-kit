@@ -1,11 +1,12 @@
 # Unistyles pitfalls
 
-Verified on react-native-unistyles 3.3.
+Verified on react-native-unistyles 3.3, unless a section names another version.
 
 ## A style on an `Animated.View` silently disappears
 
 A Unistyles style passed to Reanimated's `Animated.View` is dropped with no error. The animated
-style still applies. A layer that lost `position: absolute` and its insets computes to 0 px and
+style still applies. Still true on 3.8.1, with the Babel plugin and with the Metro integration, on
+native and on web. A layer that lost `position: absolute` and its insets computes to 0 px and
 never paints. Styles on plain views work.
 
 **Fix:** give animated nodes plain styles (React Native's own `StyleSheet.absoluteFill`, plain
@@ -50,7 +51,21 @@ platforms differ silently.
 
 ## Content inside a `ScopedTheme` keeps the wrong theme
 
-On native, the scope exists only while the scoped component renders. Three failures follow:
+Since 3.5.2 the scope reaches its content through React context. On 3.7.0 and later, content
+inside a scope follows a change of its `name`, including views that do not re-render and
+`useUnistyles().theme`. `UnistylesRuntime.themeName` returns the app's theme inside a scope too:
+read the surface's theme from `useUnistyles().rt.themeName`.
+
+On 3.5 and 3.6 with the Babel plugin, Metro bundles Unistyles twice: `lib/module` for imports from
+the package root, and `src` for the plugin's `components/native/*` imports. Each copy has its own
+scope context, so views find no scope and take the app's theme. Inverse sheets and popovers show
+it first. Web loads one copy and works.
+
+**Fix:** Unistyles 3.7.0 or later. Check that `__r.getModules()` lists one module path with
+`ScopedThemeContext`.
+
+Before 3.5.2, on native, the scope exists only while the scoped component renders. Three failures
+follow:
 
 1. `useUnistyles().theme` inside a scope is frozen at mount. `rt.themeName` does follow.
 2. A stylesheet style remembers the scope name from the last time its view rendered. When the
@@ -60,11 +75,22 @@ On native, the scope exists only while the scoped component renders. Three failu
    scope at all. `useAnimatedTheme` and `withUnistyles` switch to the root theme, and style values
    that change in that render come from the root theme.
 
-The docs describe `ScopedTheme` for fixed themes and avoid React context on purpose. The matching
-upstream issue is labelled wontfix, so do not plan around an upstream fix.
+**Fix before 3.5.2:** keep the scope's `name` fixed. For a component that renders later, put a
+`ScopedTheme` inside it. To switch a subtree's theme, remount it with `key={name}`.
 
-**Fix:** keep the scope's `name` fixed. For a component that renders later, put a `ScopedTheme`
-inside it. To switch a subtree's theme, remount it with `key={name}`.
+## Variants not applied under the Metro integration
+
+From 3.8.0, `withUnistylesConfig` from `react-native-unistyles/metro` replaces the Babel plugin in
+a Metro app. Re.Pack, Vite and Next.js keep the plugin. Under the integration,
+`styles.useVariants({ … })` returns the styles with the variants applied and leaves `styles`
+unchanged. A bare `styles.useVariants({ … })` statement followed by reads of `styles` selects no
+variants, with no error. The plugin throws when the `UNISTYLES_METRO` environment variable is set
+and the plugin is configured too.
+
+**Fix:** keep the returned value and read from it. The upstream codemod
+`react-native-unistyles/codemods/use-variants.js` (run with jscodeshift) rewrites the bare calls.
+A library prebuilt with the Babel plugin needs no change: the plugin already compiles the bare
+call into the returned-value form.
 
 ## "No theme has been selected yet" at import
 
@@ -94,5 +120,7 @@ Synthetic events cannot trigger `:active`. Verify the compiled rule with
 - Breakpoints go into `StyleSheet.configure`, not the theme, and they are width-only. A rule on the
   smallest side needs `mq.width(…).and.height(…)`, which works only inside `StyleSheet.create`.
 - Reading `UnistylesRuntime` never re-renders. `useUnistyles()` does.
+- Skip 3.8.0: a theme change during a Reanimated animation freezes an Android app and aborts an iOS
+  debug build. 3.8.1 fixes it.
 - A style entry with logical `paddingInline`, passed as `contentContainerStyle` to a Gesture
   Handler `ScrollView`, was dropped on web. A plain style with physical keys works.
