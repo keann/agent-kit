@@ -3,6 +3,21 @@
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Version numbers
 follow the rules in [Versioning](README.md#versioning).
 
+## [1.0.2] - 2026-11-12
+
+### Changed
+
+- `react-native-pitfalls`, Unistyles:
+    - The `ScopedTheme` entry covers 3.5.2 and later: the scope comes through React context, and
+      content follows a renamed scope from 3.7.0. On 3.5 and 3.6, the Babel plugin makes Metro
+      bundle two copies of Unistyles, and views lose their scope.
+    - New entry: variants not applied under the Metro integration from 3.8.0, with the upstream
+      `use-variants` codemod as the fix.
+    - The `Animated.View` entry is confirmed on 3.8.1, with the Babel plugin and the Metro
+      integration.
+    - Skip 3.8.0, which freezes Android or aborts an iOS debug build on a theme change during a
+      Reanimated animation.
+
 ## [1.0.1] - 2026-10-31
 
 ### Fixed
